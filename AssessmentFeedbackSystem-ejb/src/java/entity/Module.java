@@ -21,20 +21,49 @@ public class Module implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ModuleID;
+    private String module_name;
+    private String SchemeID;
 
-    public Long getId() {
-        return id;
+    public Module(Long ModuleID, String module_name, String SchemeID) {
+        this.ModuleID = ModuleID;
+        this.module_name = module_name;
+        this.SchemeID = SchemeID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Module() {
+    }
+
+    public String getModule_name() {
+        return module_name;
+    }
+
+    public void setModule_name(String module_name) {
+        this.module_name = module_name;
+    }
+
+    public String getSchemeID() {
+        return SchemeID;
+    }
+
+    public void setSchemeID(String SchemeID) {
+        this.SchemeID = SchemeID;
+    }
+
+    
+    
+    public Long getModuleID() {
+        return ModuleID;
+    }
+
+    public void setModuleID(Long ModuleID) {
+        this.ModuleID = ModuleID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (ModuleID != null ? ModuleID.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +74,7 @@ public class Module implements Serializable {
             return false;
         }
         Module other = (Module) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.ModuleID == null && other.ModuleID != null) || (this.ModuleID != null && !this.ModuleID.equals(other.ModuleID))) {
             return false;
         }
         return true;
@@ -53,7 +82,7 @@ public class Module implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Module[ id=" + id + " ]";
+        return "entity.Module[ id=" + ModuleID + " ]";
     }
     
 }

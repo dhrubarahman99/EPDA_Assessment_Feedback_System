@@ -7,8 +7,6 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -20,21 +18,29 @@ public class Enrollment implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String UserID_ClassID;
 
-    public Long getId() {
-        return id;
+    public Enrollment() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Enrollment(String UserID_ClassID) {
+        this.UserID_ClassID = UserID_ClassID;
     }
+
+    public String getUserID_ClassID() {
+        return UserID_ClassID;
+    }
+
+    public void setUserID_ClassID(String UserID_ClassID) {
+        this.UserID_ClassID = UserID_ClassID;
+    }
+
+
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (UserID_ClassID != null ? UserID_ClassID.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +51,7 @@ public class Enrollment implements Serializable {
             return false;
         }
         Enrollment other = (Enrollment) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.UserID_ClassID == null && other.UserID_ClassID != null) || (this.UserID_ClassID != null && !this.UserID_ClassID.equals(other.UserID_ClassID))) {
             return false;
         }
         return true;
@@ -53,7 +59,7 @@ public class Enrollment implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Enrollment[ id=" + id + " ]";
+        return "entity.Enrollment[ id=" + UserID_ClassID + " ]";
     }
     
 }

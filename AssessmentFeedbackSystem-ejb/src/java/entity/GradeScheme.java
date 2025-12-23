@@ -20,21 +20,55 @@ public class GradeScheme implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String SchemeID_Grade;
+    private Long lower_bound;
+    private Long upper_bound;
 
-    public Long getId() {
-        return id;
+    public GradeScheme(String SchemeID_Grade, Long lower_bound, Long upper_bound) {
+        this.SchemeID_Grade = SchemeID_Grade;
+        this.lower_bound = lower_bound;
+        this.upper_bound = upper_bound;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getSchemeID_Grade() {
+        return SchemeID_Grade;
     }
+
+    public void setSchemeID_Grade(String SchemeID_Grade) {
+        this.SchemeID_Grade = SchemeID_Grade;
+    }
+
+    
+
+    public GradeScheme() {
+    }
+
+
+
+    public Long getLower_bound() {
+        return lower_bound;
+    }
+
+    public void setLower_bound(Long lower_bound) {
+        this.lower_bound = lower_bound;
+    }
+
+    public Long getUpper_bound() {
+        return upper_bound;
+    }
+
+    public void setUpper_bound(Long upper_bound) {
+        this.upper_bound = upper_bound;
+    }
+
+    
+    
+
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (SchemeID_Grade != null ? SchemeID_Grade.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +79,7 @@ public class GradeScheme implements Serializable {
             return false;
         }
         GradeScheme other = (GradeScheme) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.SchemeID_Grade == null && other.SchemeID_Grade != null) || (this.SchemeID_Grade != null && !this.SchemeID_Grade.equals(other.SchemeID_Grade))) {
             return false;
         }
         return true;
@@ -53,7 +87,7 @@ public class GradeScheme implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.GradeScheme[ id=" + id + " ]";
+        return "entity.GradeScheme[ id=" + SchemeID_Grade + " ]";
     }
     
 }

@@ -21,20 +21,59 @@ public class ClassGroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ClassID;
+    private String lecture_ID;
+    private String students_ID;
+    private String ModuleID;
 
-    public Long getId() {
-        return id;
+    public ClassGroup(Long ClassID, String lecture_ID, String students_ID, String ModuleID) {
+        this.ClassID = ClassID;
+        this.lecture_ID = lecture_ID;
+        this.students_ID = students_ID;
+        this.ModuleID = ModuleID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public ClassGroup() {
+    }
+
+    public String getLecture_ID() {
+        return lecture_ID;
+    }
+
+    public void setLecture_ID(String lecture_ID) {
+        this.lecture_ID = lecture_ID;
+    }
+
+    public String getStudents_ID() {
+        return students_ID;
+    }
+
+    public void setStudents_ID(String students_ID) {
+        this.students_ID = students_ID;
+    }
+
+    public String getModuleID() {
+        return ModuleID;
+    }
+
+    public void setModuleID(String ModuleID) {
+        this.ModuleID = ModuleID;
+    }
+    
+    
+
+    public Long getClassID() {
+        return ClassID;
+    }
+
+    public void setClassID(Long ClassID) {
+        this.ClassID = ClassID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (ClassID != null ? ClassID.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +84,7 @@ public class ClassGroup implements Serializable {
             return false;
         }
         ClassGroup other = (ClassGroup) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.ClassID == null && other.ClassID != null) || (this.ClassID != null && !this.ClassID.equals(other.ClassID))) {
             return false;
         }
         return true;
@@ -53,7 +92,7 @@ public class ClassGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.ClassGroup[ id=" + id + " ]";
+        return "entity.ClassGroup[ id=" + ClassID + " ]";
     }
     
 }
