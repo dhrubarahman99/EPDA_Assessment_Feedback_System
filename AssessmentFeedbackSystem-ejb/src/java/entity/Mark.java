@@ -20,43 +20,21 @@ public class Mark implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    private String AssessmentID_UserID;
-    private Long Marks;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public Mark(String AssessmentID_UserID, Long Marks) {
-        this.AssessmentID_UserID = AssessmentID_UserID;
-        this.Marks = Marks;
+    public Long getId() {
+        return id;
     }
 
-
-
-    public Mark() {
-    }
-
-
-
-    public Long getMarks() {
-        return Marks;
-    }
-
-    public void setMarks(Long Marks) {
-        this.Marks = Marks;
-    }
-
-    
-   
-    public String getAssessmentID_UserID() {
-        return AssessmentID_UserID;
-    }
-
-    public void setAssessmentID_UserID(String AssessmentID_UserID) {
-        this.AssessmentID_UserID = AssessmentID_UserID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (AssessmentID_UserID != null ? AssessmentID_UserID.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -67,7 +45,7 @@ public class Mark implements Serializable {
             return false;
         }
         Mark other = (Mark) object;
-        if ((this.AssessmentID_UserID == null && other.AssessmentID_UserID != null) || (this.AssessmentID_UserID != null && !this.AssessmentID_UserID.equals(other.AssessmentID_UserID))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -75,7 +53,7 @@ public class Mark implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Mark[ id=" + AssessmentID_UserID + " ]";
+        return "entity.Mark[ id=" + id + " ]";
     }
     
 }

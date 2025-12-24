@@ -21,49 +21,20 @@ public class Assessment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long AssessmentID;
-    private String assessment_name;
-    private String ModuleID;
-    
-    public Assessment(Long AssessmentID, String assessment_name, String ModuleID) {
-        this.AssessmentID = AssessmentID;
-        this.assessment_name = assessment_name;
-        this.ModuleID = ModuleID;
+    private Long id;
+
+    public Long getId() {
+        return id;
     }
 
-    public Assessment() {
-    }
-
-    public void setAssessment_name(String assessment_name) {
-        this.assessment_name = assessment_name;
-    }
-
-    public void setModuleID(String ModuleID) {
-        this.ModuleID = ModuleID;
-    }
-    
-    
-    public String getAssessment_name() {
-        return assessment_name;
-    }
-
-    public String getModuleID() {
-        return ModuleID;
-    }
-    
-
-    public Long getAssessmentID() {
-        return AssessmentID;
-    }
-
-    public void setAssessmentID(Long AssessmentID) {
-        this.AssessmentID = AssessmentID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (AssessmentID != null ? AssessmentID.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -74,7 +45,7 @@ public class Assessment implements Serializable {
             return false;
         }
         Assessment other = (Assessment) object;
-        if ((this.AssessmentID == null && other.AssessmentID != null) || (this.AssessmentID != null && !this.AssessmentID.equals(other.AssessmentID))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -82,7 +53,7 @@ public class Assessment implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Assessment[ id=" + AssessmentID + " ]";
+        return "entity.Assessment[ id=" + id + " ]";
     }
     
 }
