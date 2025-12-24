@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -19,16 +21,74 @@ import javax.persistence.Id;
 public class Mark implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // ATTRIBUTES
+    private int score;
+    private String feedback;
+
+    // RELATIONSHIPS AND FOREIGN KEYS
+    @ManyToOne
+    @JoinColumn(name = "enrollment_id")
+    private Enrollment enrollment;
+
+    @ManyToOne
+    @JoinColumn(name = "assessment_id")
+    private Assessment assessment;
+
+    // CONSTRUCTORS
+    public Mark() {
+    }
+
+    public Mark(int score, String feedback, Enrollment enrollment, Assessment assessment) {
+        this.score = score;
+        this.feedback = feedback;
+        this.enrollment = enrollment;
+        this.assessment = assessment;
+    }
+
+    // GETTERS AND SETTERS
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public Enrollment getEnrollment() {
+        return enrollment;
+    }
+
+    public void setEnrollment(Enrollment enrollment) {
+        this.enrollment = enrollment;
+    }
+
+    public Assessment getAssessment() {
+        return assessment;
+    }
+
+    public void setAssessment(Assessment assessment) {
+        this.assessment = assessment;
     }
 
     @Override
