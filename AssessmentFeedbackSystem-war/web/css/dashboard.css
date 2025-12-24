@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #f4f6fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* MAIN CONTAINER (like login card) */
+.dashboard-container {
+    width: 900px;
+    background: #ffffff;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+.dashboard-container h1 {
+    color: #6c63ff;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* GRID */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* DASHBOARD CARD */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    border-bottom: 6px solid #f9c74f; /* same yellow as submit button */
+}
+
+/* IMAGE */
+.card-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+/* TEXT */
+.card h2 {
+    color: #6c63ff;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* HOVER */
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+.top-bar {
+    position: relative;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.top-bar h1 {
+    color: #6c63ff;
+    letter-spacing: 2px;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 8px 18px;
+    background: #f9c74f;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #f1b937;
+}

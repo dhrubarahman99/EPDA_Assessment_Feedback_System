@@ -1,0 +1,107 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 24, 2025, 3:14:43 PM
+    Author     : liewj
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #f4f6fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 900px;
+    height: auto;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 40px 60px;
+}
+
+/* HEADER BUTTONS */
+.header-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.header-buttons button {
+    padding: 8px 18px;
+    background: #f9c74f;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header-buttons button:hover {
+    background: #f1b937;
+}
+
+/* FORM */
+.create-box h1 {
+    color: #6c63ff;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    padding: 10px 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-bottom-color: #6c63ff;
+}
+
+/* CREATE BUTTON */
+.create-btn {
+    width: 100%;
+    padding: 12px;
+    background: #6c63ff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.create-btn:hover {
+    background: #5548c8;
+}
