@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,7 +23,54 @@ public class Assessment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    
+    //ATTRIBUTES
     private Long id;
+    private String title;
+    private int weightage;
+    
+    
+    //RELATIONSHIP AND FOREIGN KEY
+    @ManyToOne
+    @JoinColumn(name = "module_id") //foreign key
+    private Module module;
+    
+    
+    //CONSTRUCTORS
+    public Assessment() {
+    }
+    
+    public Assessment(String title, int weightage, Module module) {
+        this.title = title;
+        this.weightage = weightage;
+        this.module = module;
+    }
+    
+    
+    //GETTERS AND SETTERS
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getWeightage() {
+        return weightage;
+    }
+
+    public void setWeightage(int weightage) {
+        this.weightage = weightage;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
 
     public Long getId() {
         return id;
