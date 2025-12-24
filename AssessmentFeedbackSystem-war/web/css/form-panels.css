@@ -1,0 +1,133 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 24, 2025, 9:29:36 PM
+    Author     : Dhruba
+*/
+
+
+
+.panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px 26px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-bottom: 6px solid #f9c74f; 
+}
+
+.panel-title {
+    color: #6c63ff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* View-info block */
+.info-row {
+    margin-bottom: 16px;
+}
+
+.info-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Form block */
+.form-row {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e6e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #6c63ff;
+}
+
+/* Buttons */
+.btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: #f9c74f;
+    color: #222;
+}
+
+.btn-primary:hover {
+    background: #f1b937;
+}
+
+.btn-secondary {
+    background: #e9ecf6;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #dde2f2;
+}
+
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .panel-grid {
+        grid-template-columns: 1fr;
+    }
+}
