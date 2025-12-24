@@ -4,12 +4,13 @@
     Author     : liewj
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Create User</title>
-    <link rel="stylesheet" href="../css/submenu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
 
@@ -34,7 +35,24 @@
     <div class="create-box">
         <h1>Create User</h1>
 
-        <form action="CreateUser" method="post">
+        <form action="UpdateUser" method="post">
+            <div class="input-group">
+                <label>User ID</label>
+                <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select User ID--</option>
+                    <% 
+                        List<String> userIds = (List<String>) request.getAttribute("userIds");
+                        if (userIds != null) {
+                            for (String userId : userIds) {
+                    %>
+                                <option value="<%= userId %>"><%= userId %></option>
+                    <% 
+                            }
+                        }
+                    %>
+                </select>
+            </div>
+            
             <div class="input-group">
                 <label>Name</label>
                 <input type="text" name="name" required>
@@ -61,7 +79,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="create-btn">Create</button>
+            <button type="submit" class="create-btn">Edit</button>
         </form>
     </div>
 

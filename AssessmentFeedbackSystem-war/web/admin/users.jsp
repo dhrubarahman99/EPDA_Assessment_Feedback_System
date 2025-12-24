@@ -19,7 +19,7 @@
     <div class="top-bar">
         <h1>USER MANAGEMENT</h1>
 
-        <form action="logout" method="post">
+        <form action="Logout" method="post">
             <button type="submit" class="logout-btn">Logout</button>
         </form>
         
@@ -37,14 +37,14 @@
             <p>Add a new user</p>
         </a>
 
-        <a href="users_edit.jsp" class="link-card">
-            <h2>Edit User</h2>
-            <p>Modify existing user</p>
+        <a href="../get_user_list?function=users_search" class="link-card">
+            <h2>Search User</h2>
+            <p>Search for existing user</p>
         </a>
 
-        <a href="users_update.jsp" class="link-card">
+        <a href="../get_user_list?function=users_update" class="link-card">
             <h2>Update User</h2>
-            <p>Save user changes</p>
+            <p>Update user details</p>
         </a>
 
         <a href="users_delete.jsp" class="link-card danger">
