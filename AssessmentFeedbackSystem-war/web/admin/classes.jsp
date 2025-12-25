@@ -32,17 +32,17 @@
     <!-- LINKS -->
     <div class="links-grid">
 
-        <a href="../get_module_list" class="link-card">
+        <a href="../admin_get_class_user_module_list?function=classes_create" class="link-card">
             <h2>Create Classes</h2>
             <p>Add a new class</p>
         </a>
 
-        <a href="classes_search.jsp" class="link-card">
-            <h2>Search User</h2>
-            <p>Search for existing class</p>
+        <a href="../admin_get_class_user_module_list?function=classes_register_students" class="link-card">
+            <h2>Assign Students</h2>
+            <p>Assign students to class</p>
         </a>
 
-        <a href="classes_update.jsp" class="link-card">
+        <a href="../admin_get_class_user_module_list?function=classes_update" class="link-card">
             <h2>Update Classes</h2>
             <p>Update class changes</p>
         </a>

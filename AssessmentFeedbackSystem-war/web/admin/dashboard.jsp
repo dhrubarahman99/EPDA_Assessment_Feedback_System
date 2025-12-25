@@ -45,10 +45,10 @@
             <p>Configure grading</p>
         </a>
 
-        <a href="reports.jsp" class="card">
-            <img src="../images/reports.png" class="card-img">
-            <h2>Reports</h2>
-            <p>Generate reports</p>
+        <a href="admin_get_lecturer_leader_list" class="card">
+            <img src="../images/hat.png" class="card-img">
+            <h2>Assign</h2>
+            <p>Assign Lecturer to Academic Leader</p>
         </a>
 
     </div>

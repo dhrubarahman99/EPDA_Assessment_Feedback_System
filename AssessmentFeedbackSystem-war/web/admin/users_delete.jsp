@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create User</title>
+    <title>Delete User</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 
     <!-- HEADER BUTTONS -->
     <div class="header-buttons">
-            <form action="${pageContext.request.contextPath}/admin/classes.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/admin/users.jsp" method="post">
             <button type="submit">Back</button>
         </form>
         
@@ -33,33 +33,28 @@
 
     <!-- CREATE USER FORM -->
     <div class="create-box">
-        <h1>Create Class</h1>
+        <h1>Delete User</h1>
 
-        <form action="CreateClasses" method="post">
+        <form action="DeleteGradeScheme" method="post">
             <div class="input-group">
-                <label>Class Name</label>
-                <input type="text" name="name" required>
-            </div>
-
-
-            <div class="input-group">
-                <label>Module</label>
-                <select name="Module" required>
-                            <% 
-                              
-                    List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
-                    if (moduleIds != null) {
-                        for (String moduleId : moduleIds) {
-                %>
-                            <option value="<%= moduleId %>"><%= moduleId %></option>
-                <% 
+                <label>User ID</label>
+                <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select User ID--</option>
+                    <% 
+                        List<String> userIds = (List<String>) request.getAttribute("userIds");
+                        if (userIds != null) {
+                            for (String userId : userIds) {
+                    %>
+                                <option value="<%= userId %>"><%= userId %></option>
+                    <% 
+                            }
                         }
-                    }
-                %>
+                    %>
                 </select>
             </div>
+            
 
-            <button type="submit" class="create-btn">Create</button>
+            <button type="submit" class="create-btn">Delete</button>
         </form>
     </div>
 

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update User</title>
+    <title>Create User</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 
     <!-- HEADER BUTTONS -->
     <div class="header-buttons">
-            <form action="${pageContext.request.contextPath}/admin/users.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/admin/classes.jsp" method="post">
             <button type="submit">Back</button>
         </form>
         
@@ -35,17 +35,17 @@
     <div class="create-box">
         <h1>Update User</h1>
 
-        <form action="UpdateUser" method="post">
+        <form action="UpdateClasses" method="post">
             <div class="input-group">
                 <label>User ID</label>
-                <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
-                    <option value="">--Select User ID--</option>
+                <select name="classId" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select Class ID--</option>
                     <% 
-                        List<String> userIds = (List<String>) request.getAttribute("userIds");
-                        if (userIds != null) {
-                            for (String userId : userIds) {
+                        List<String> classIds = (List<String>) request.getAttribute("classIds");
+                        if (classIds != null) {
+                            for (String classId : classIds) {
                     %>
-                                <option value="<%= userId %>"><%= userId %></option>
+                                <option value="<%= classId %>"><%= classId %></option>
                     <% 
                             }
                         }
@@ -58,24 +58,21 @@
                 <input type="text" name="name" required>
             </div>
 
+            
             <div class="input-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
-
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
-            </div>
-
-            <div class="input-group">
-                <label>Role</label>
-                <select name="role" required>
-                    <option value="">--Select Role--</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Academic Leader">Academic Leader</option>
-                    <option value="Lecturer">Lecturer</option>
-                    <option value="Student">Student</option>
+                <label>Module ID</label>
+                <select name="moduleId" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select Module ID--</option>
+                    <% 
+                        List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
+                        if (moduleIds != null) {
+                            for (String moduleId : moduleIds) {
+                    %>
+                                <option value="<%= moduleId %>"><%= moduleId %></option>
+                    <% 
+                            }
+                        }
+                    %>
                 </select>
             </div>
 

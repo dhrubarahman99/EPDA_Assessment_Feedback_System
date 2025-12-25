@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create User</title>
+    <title>Delete Class</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
@@ -33,33 +33,28 @@
 
     <!-- CREATE USER FORM -->
     <div class="create-box">
-        <h1>Create Class</h1>
+        <h1>Delete Class</h1>
 
-        <form action="CreateClasses" method="post">
+        <form action="DeleteClasses" method="post">
             <div class="input-group">
-                <label>Class Name</label>
-                <input type="text" name="name" required>
-            </div>
-
-
-            <div class="input-group">
-                <label>Module</label>
-                <select name="Module" required>
-                            <% 
-                              
-                    List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
-                    if (moduleIds != null) {
-                        for (String moduleId : moduleIds) {
-                %>
-                            <option value="<%= moduleId %>"><%= moduleId %></option>
-                <% 
+                <label>User ID</label>
+                <select name="classId" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select Class ID--</option>
+                    <% 
+                        List<String> classIds = (List<String>) request.getAttribute("classIds");
+                        if (classIds != null) {
+                            for (String classId : classIds) {
+                    %>
+                                <option value="<%= classId %>"><%= classId %></option>
+                    <% 
+                            }
                         }
-                    }
-                %>
+                    %>
                 </select>
             </div>
+            
 
-            <button type="submit" class="create-btn">Create</button>
+            <button type="submit" class="create-btn">Delete</button>
         </form>
     </div>
 
