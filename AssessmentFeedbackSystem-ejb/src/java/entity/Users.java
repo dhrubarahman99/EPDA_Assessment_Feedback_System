@@ -13,13 +13,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Dhruba
  */
 @Entity
-public class User implements Serializable {
+@Table(name = "USERS")
+public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,13 +41,13 @@ public class User implements Serializable {
     // RELATIONSHIP AND FOREIGN KEY
     @ManyToOne
     @JoinColumn(name = "leader_id", nullable = true)
-    private User leader;
+    private Users leader;
 
     // CONSTRUCTORS
-    public User() {
+    public Users() {
     }
 
-    public User(String name, String email, String password, String role, User leader) {
+    public Users(String name, String email, String password, String role, Users leader) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -94,11 +96,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public User getLeader() {
+    public Users getLeader() {
         return leader;
     }
 
-    public void setLeader(User leader) {
+    public void setLeader(Users leader) {
         this.leader = leader;
     }
 
@@ -112,10 +114,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Users)) {
             return false;
         }
-        User other = (User) object;
+        Users other = (Users) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

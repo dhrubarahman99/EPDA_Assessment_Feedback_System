@@ -38,13 +38,13 @@ public class Module implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "lecturer_id")
-    private User lecturer;
+    private Users lecturer;
 
     // CONSTRUCTORS
     public Module() {
     }
 
-    public Module(String moduleCode, String moduleName, GradeScheme gradeScheme, User lecturer) {
+    public Module(String moduleCode, String moduleName, GradeScheme gradeScheme, Users lecturer) {
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
         this.gradeScheme = gradeScheme;
@@ -84,11 +84,11 @@ public class Module implements Serializable {
         this.gradeScheme = gradeScheme;
     }
 
-    public User getLecturer() {
+    public Users getLecturer() {
         return lecturer;
     }
 
-    public void setLecturer(User lecturer) {
+    public void setLecturer(Users lecturer) {
         this.lecturer = lecturer;
     }
 

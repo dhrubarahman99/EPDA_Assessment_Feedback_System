@@ -30,7 +30,7 @@ public class Enrollment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private User student;
+    private Users student;
 
     @ManyToOne
     @JoinColumn(name = "classgroup_id")
@@ -40,7 +40,7 @@ public class Enrollment implements Serializable {
     public Enrollment() {
     }
 
-    public Enrollment(User student, ClassGroup classGroup) {
+    public Enrollment(Users student, ClassGroup classGroup) {
         this.student = student;
         this.classGroup = classGroup;
     }
@@ -54,11 +54,11 @@ public class Enrollment implements Serializable {
         this.id = id;
     }
 
-    public User getStudent() {
+    public Users getStudent() {
         return student;
     }
 
-    public void setStudent(User student) {
+    public void setStudent(Users student) {
         this.student = student;
     }
 

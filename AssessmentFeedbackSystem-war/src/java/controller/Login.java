@@ -5,7 +5,7 @@
  */
 package controller;
 
-import facade.UserFacade;
+import facade.UsersFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.User;
+import entity.Users;
 import javax.servlet.http.HttpSession;
 
 
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet {
 
     @EJB
-    private UserFacade userFacade;
+    private UsersFacade userFacade;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
 
         // Find user by email
-        User user = userFacade.findByEmail(email);
+        Users user = userFacade.findByEmail(email);
 
         // Validate login
         if (user != null && user.getPassword().equals(password)) {
