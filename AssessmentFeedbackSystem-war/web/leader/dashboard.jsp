@@ -19,7 +19,7 @@
     <div class="top-bar">
         <div></div>
         <h1>LEADER DASHBOARD</h1>
-        <form action="logout" method="post">
+        <form action="Logout" method="post">
             <button type="submit" class="logout-btn">Logout</button>
         </form>
     </div>

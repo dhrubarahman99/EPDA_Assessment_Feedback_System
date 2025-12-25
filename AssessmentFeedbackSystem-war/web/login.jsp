@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +8,33 @@
 <body>
 
 <div class="container">
+
     <!-- LEFT PANEL -->
     <div class="login-box">
         <h1>WELCOME</h1>
 
-        <form action="logout" method="post">
+        <form action="Login" method="post">
+
             <div class="input-group">
-                <label>Username</label>
-                <input type="text" name="username" required>
+                <label>Email</label>
+                <input type="email" name="email" required>
             </div>
 
             <div class="input-group">
                 <label>Password</label>
                 <input type="password" name="password" required>
             </div>
+            
+            <%
+                String err = request.getParameter("error");
+                if ("invalid".equals(err)) {
+            %>
+                <p class="error-msg">Invalid email or password.</p>
+            <%
+                }
+            %>
 
-           
-            <button type="submit" class="btn">SUBMIT</button>
+            <button type="submit" class="btn">Login</button>
         </form>
     </div>
 
@@ -32,7 +42,9 @@
     <div class="image-box">
         <img src="images/login-illustration.png" alt="Login Illustration">
     </div>
+
 </div>
 
 </body>
 </html>
+
