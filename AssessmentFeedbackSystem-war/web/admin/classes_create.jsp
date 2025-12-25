@@ -4,12 +4,13 @@
     Author     : liewj
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Create User</title>
-    <link rel="stylesheet" href="../css/submenu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
 
@@ -17,7 +18,7 @@
 
     <!-- HEADER BUTTONS -->
     <div class="header-buttons">
-            <form action="${pageContext.request.contextPath}/admin/users.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/admin/classes.jsp" method="post">
             <button type="submit">Back</button>
         </form>
         
@@ -32,32 +33,29 @@
 
     <!-- CREATE USER FORM -->
     <div class="create-box">
-        <h1>Create User</h1>
+        <h1>Create Class</h1>
 
-        <form action="CreateUser" method="post">
+        <form action="CreateUserServlet" method="post">
             <div class="input-group">
-                <label>Name</label>
+                <label>Class Name</label>
                 <input type="text" name="name" required>
             </div>
 
-            <div class="input-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
 
             <div class="input-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
-            </div>
-
-            <div class="input-group">
-                <label>Role</label>
-                <select name="role" required>
-                    <option value="">--Select Role--</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Academic Leader">Academic Leader</option>
-                    <option value="Lecturer">Lecturer</option>
-                    <option value="Student">Student</option>
+                <label>Module</label>
+                <select name="Module" required>
+                            <% 
+                              
+                    List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
+                    if (moduleIds != null) {
+                        for (String moduleId : moduleIds) {
+                %>
+                            <option value="<%= moduleId %>"><%= moduleId %></option>
+                <% 
+                        }
+                    }
+                %>
                 </select>
             </div>
 
