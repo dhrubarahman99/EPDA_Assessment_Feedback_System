@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update User</title>
+    <title>Update GradeScheme</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 
     <!-- HEADER BUTTONS -->
     <div class="header-buttons">
-            <form action="${pageContext.request.contextPath}/admin/users.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/admin/gradescheme.jsp" method="post">
             <button type="submit">Back</button>
         </form>
         
@@ -33,19 +33,19 @@
 
     <!-- CREATE USER FORM -->
     <div class="create-box">
-        <h1>Update User</h1>
+        <h1>Update GradeScheme</h1>
 
-        <form action="UpdateUser" method="post">
+        <form action="UpdateGradeScheme" method="post">
             <div class="input-group">
-                <label>User ID</label>
-                <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
-                    <option value="">--Select User ID--</option>
+                <label>Select GradeScheme ID</label>
+                <select name="gradeschemeId" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select GradeScheme ID--</option>
                     <% 
-                        List<String> userIds = (List<String>) request.getAttribute("userIds");
-                        if (userIds != null) {
-                            for (String userId : userIds) {
+                        List<String> gradeschemeIds = (List<String>) request.getAttribute("gradeschemeIds");
+                        if (gradeschemeIds != null) {
+                            for (String gradeschemeId : gradeschemeIds) {
                     %>
-                                <option value="<%= userId %>"><%= userId %></option>
+                                <option value="<%= gradeschemeId %>"><%= gradeschemeId %></option>
                     <% 
                             }
                         }
@@ -59,24 +59,23 @@
             </div>
 
             <div class="input-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
+                <label>A MIN</label>
+                <input type="number" name="aMin" required>
             </div>
 
             <div class="input-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
+                <label>B MIN</label>
+                <input type="number" name="bMin" required>
             </div>
 
             <div class="input-group">
-                <label>Role</label>
-                <select name="role" required>
-                    <option value="">--Select Role--</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Academic Leader">Academic Leader</option>
-                    <option value="Lecturer">Lecturer</option>
-                    <option value="Student">Student</option>
-                </select>
+                <label>C MIN</label>
+                <input type="number" name="cMin" required>
+            </div>
+
+            <div class="input-group">
+                <label>D MIN</label>
+                <input type="number" name="dMin" required>
             </div>
 
             <button type="submit" class="create-btn">Edit</button>
