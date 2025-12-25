@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete User</title>
+    <title>Delete Assessment</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
@@ -18,11 +18,11 @@
 
     <!-- HEADER BUTTONS -->
     <div class="header-buttons">
-            <form action="${pageContext.request.contextPath}/admin/users.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/lecturer/assessments.jsp" method="post">
             <button type="submit">Back</button>
         </form>
         
-        <form action="${pageContext.request.contextPath}/admin/dashboard.jsp" method="post">
+        <form action="${pageContext.request.contextPath}/lecturer/dashboard.jsp" method="post">
             <button type="submit"> Home</button>
         </form>
         
@@ -33,19 +33,19 @@
 
     <!-- CREATE USER FORM -->
     <div class="create-box">
-        <h1>Delete User</h1>
+        <h1>Delete Assessment</h1>
 
-        <form action="DeleteUser" method="post">
+        <form action="DeleteAssessment" method="post">
             <div class="input-group">
-                <label>User ID</label>
-                <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
-                    <option value="">--Select User ID--</option>
+                <label>Assessment ID</label>
+                <select name="assessmentIds" id="userSelect" required onchange="loadUserDetails(this.value)">
+                    <option value="">--Select Assessment ID--</option>
                     <% 
-                        List<String> userIds = (List<String>) request.getAttribute("userIds");
-                        if (userIds != null) {
-                            for (String userId : userIds) {
+                        List<String> assessmentIds = (List<String>) request.getAttribute("assessmentIds");
+                        if (assessmentIds != null) {
+                            for (String assessmentId : assessmentIds) {
                     %>
-                                <option value="<%= userId %>"><%= userId %></option>
+                                <option value="<%= assessmentId %>"><%= assessmentId %></option>
                     <% 
                             }
                         }

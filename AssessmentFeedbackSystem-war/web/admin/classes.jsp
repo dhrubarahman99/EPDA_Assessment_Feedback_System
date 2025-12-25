@@ -47,7 +47,7 @@
             <p>Update class changes</p>
         </a>
 
-        <a href="classes_delete.jsp" class="link-card danger">
+        <a href="../admin_get_class_user_module_list?function=classes_delete" class="link-card danger">
             <h2>Delete Classes</h2>
             <p>Remove class from system</p>
         </a>
