@@ -26,7 +26,7 @@
         </form>
     </div>
 
-    <!-- TOOLBAR (Search + Sort + Filter + Buttons) -->
+    <!-- TOOLBAR (Search + Sort + Filter) -->
     <div class="panel">
         <h2 class="panel-title">Module Management</h2>
 

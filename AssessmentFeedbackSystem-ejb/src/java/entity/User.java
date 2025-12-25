@@ -38,7 +38,7 @@ public class User implements Serializable {
 
     // RELATIONSHIP AND FOREIGN KEY
     @ManyToOne
-    @JoinColumn(name = "leader_id")
+    @JoinColumn(name = "leader_id", nullable = true)
     private User leader;
 
     // CONSTRUCTORS
