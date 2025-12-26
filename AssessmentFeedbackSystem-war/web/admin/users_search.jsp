@@ -10,6 +10,7 @@
 <head>
     <title>Search User</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/search_pages.css">
     <style>
         .hidden {
             display: none;
@@ -53,8 +54,37 @@
                     %>
                 </select>
             </div>
-            
+            <button type="submit" class="create-btn">Search</button>
         </form>
+    </div>
+    <!-- RESULTS SECTION WITH HARDCODED DATA -->
+    <div class="create-box results-section">
+        <h2>User Details</h2>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email </th>
+                        <th>Password</th>
+                        <th>Role</th>
+                        <th>Leader</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>100000</td>
+                        <td>Jeff</td>
+                        <td>sa@gmail.com</td>
+                        <td>12345677</td>
+                        <td>Admin</td>
+                        <td>null</td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
