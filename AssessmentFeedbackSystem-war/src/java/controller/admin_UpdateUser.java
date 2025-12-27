@@ -27,6 +27,8 @@ public class admin_UpdateUser extends HttpServlet {
        String password = request.getParameter("password");
        String role = request.getParameter("role");
        
+       email = email.trim();
+       name = name.trim();
        
        
        

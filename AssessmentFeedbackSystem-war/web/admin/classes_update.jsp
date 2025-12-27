@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Update User</h1>
 
-        <form action="UpdateClasses" method="post">
+        <form action="${pageContext.request.contextPath}/admin_UpdateClasses" method="get">
             <div class="input-group">
-                <label>User ID</label>
+                <label>Class ID</label>
                 <select name="classId" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Class ID--</option>
                     <% 
-                        List<String> classIds = (List<String>) request.getAttribute("classIds");
+                        List<Long> classIds = (List<Long>) request.getAttribute("classgroupIds");
                         if (classIds != null) {
-                            for (String classId : classIds) {
+                            for (Long classId : classIds) {
                     %>
                                 <option value="<%= classId %>"><%= classId %></option>
                     <% 
@@ -64,9 +64,9 @@
                 <select name="moduleId" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Module ID--</option>
                     <% 
-                        List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
+                        List<Long> moduleIds = (List<Long>) request.getAttribute("moduleIds");
                         if (moduleIds != null) {
-                            for (String moduleId : moduleIds) {
+                            for (Long moduleId : moduleIds) {
                     %>
                                 <option value="<%= moduleId %>"><%= moduleId %></option>
                     <% 
@@ -75,7 +75,14 @@
                     %>
                 </select>
             </div>
-
+             <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
             <button type="submit" class="create-btn">Edit</button>
         </form>
     </div>

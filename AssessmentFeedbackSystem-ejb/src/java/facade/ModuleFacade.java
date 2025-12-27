@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Module;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,21 @@ public class ModuleFacade extends AbstractFacade<Module> {
     public ModuleFacade() {
         super(Module.class);
     }
+    public List<Long> getmoduleIDs() {
+    return em.createQuery(
+        "SELECT u.id FROM Module u",
+        Long.class
+    ).getResultList();
+}
+    
+     public Module findByID(Long id) {
+    try {
+        return em.createQuery("SELECT u FROM Module u WHERE u.id = :id", Module.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    } catch (Exception e) {
+        return null;
+    }
+}
     
 }
