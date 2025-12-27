@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Update User</h1>
 
-        <form action="UpdateUser" method="post">
+        <form action="${pageContext.request.contextPath}/admin_UpdateUser" method="get">
             <div class="input-group">
                 <label>User ID</label>
                 <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select User ID--</option>
                     <% 
-                        List<String> userIds = (List<String>) request.getAttribute("userIds");
+                        List<Long> userIds = (List<Long>) request.getAttribute("userIds");
                         if (userIds != null) {
-                            for (String userId : userIds) {
+                            for (Long userId : userIds) {
                     %>
                                 <option value="<%= userId %>"><%= userId %></option>
                     <% 
@@ -78,7 +78,14 @@
                     <option value="Student">Student</option>
                 </select>
             </div>
-
+            <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
             <button type="submit" class="create-btn">Edit</button>
         </form>
     </div>

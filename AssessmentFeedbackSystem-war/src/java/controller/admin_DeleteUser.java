@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin_get_class_user_module_list")
-public class admin_get_class_user_module_list extends HttpServlet {
+@WebServlet("/admin_DeleteUser")
+public class admin_DeleteUser extends HttpServlet {
     
     @EJB
     private UsersFacade userFacade;
@@ -21,13 +21,12 @@ public class admin_get_class_user_module_list extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
-       List<Long> userIds = userFacade.getuserIDs();
+       Long userId = Long.parseLong(request.getParameter("userId"));
        
-       String function = request.getParameter("function");
-
-        
-        
-        request.setAttribute("userIds", userIds);
-        request.getRequestDispatcher("/admin/"+function+".jsp").forward(request, response);
+       
+       userFacade.deleteUser(userId);
+       request.setAttribute("success","Deletion Successful");
+       request.getRequestDispatcher("/admin_get_class_user_module_list?function=users_delete").include(request,response);
+       
     }
     }
