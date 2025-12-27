@@ -19,7 +19,7 @@
     <div class="top-bar">
         <div></div>
         <h1>STUDENT DASHBOARD</h1>
-        <form action="logout" method="post">
+        <form action="../logout" method="post">
             <button type="submit" class="logout-btn">Logout</button>
         </form>
     </div>

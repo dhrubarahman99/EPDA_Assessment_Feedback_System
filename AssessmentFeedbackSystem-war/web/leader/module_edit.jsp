@@ -22,7 +22,7 @@
         <a href="modules.jsp" class="btn btn-secondary back-btn">Back</a>
         <h1>EDIT MODULE</h1>
 
-        <form action="../logout" method="post">
+        <form action="${pageContext.request.contextPath}/logout" method="post">
             <button class="logout-btn" type="submit">Logout</button>
         </form>
     </div>

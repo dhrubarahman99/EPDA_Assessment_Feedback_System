@@ -19,7 +19,7 @@
     <div class="top-bar">
         <h1>MARKS MANAGEMENT</h1>
 
-        <form action="Logout" method="post">
+        <form action="../logout" method="post">
             <button type="submit" class="logout-btn">Logout</button>
         </form>
         

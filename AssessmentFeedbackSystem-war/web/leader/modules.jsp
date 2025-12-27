@@ -21,7 +21,7 @@
     <div class="top-bar">
         <a href="dashboard.jsp" class="btn btn-secondary back-btn">Back</a>
         <h1>MODULES</h1>
-        <form action="Logout" method="post">
+        <form action="${pageContext.request.contextPath}/logout" method="post">
             <button class="logout-btn" type="submit">Logout</button>
         </form>
     </div>
