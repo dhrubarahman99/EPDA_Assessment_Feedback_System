@@ -32,7 +32,7 @@
     <div class="create-box">
         <h1>Assign Lecturer to Leader</h1>
 
-        <form action="LecturerAssignLeader" method="post">
+        <form action="admin_LecturerAssignLeader" method="post">
             
 
 
@@ -41,9 +41,9 @@
                 <select name="Lecturer" required>
                             <% 
                               
-                    List<String> lecturerIds = (List<String>) request.getAttribute("lecturerIds");
+                    List<Long> lecturerIds = (List<Long>) request.getAttribute("lecturerIds");
                     if (lecturerIds != null) {
-                        for (String lecturerId : lecturerIds) {
+                        for (Long lecturerId : lecturerIds) {
                 %>
                             <option value="<%= lecturerId %>"><%= lecturerId %></option>
                 <% 
@@ -59,9 +59,9 @@
                 <select name="Leader" required>
                             <% 
                               
-                    List<String> leaderIds = (List<String>) request.getAttribute("leaderIds");
+                    List<Long> leaderIds = (List<Long>) request.getAttribute("leaderIds");
                     if (leaderIds != null) {
-                        for (String leaderId : leaderIds) {
+                        for (Long leaderId : leaderIds) {
                 %>
                             <option value="<%= leaderId %>"><%= leaderId %></option>
                 <% 
@@ -70,6 +70,15 @@
                 %>
                 </select>
             </div>
+            
+            <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Assign</button>
         </form>

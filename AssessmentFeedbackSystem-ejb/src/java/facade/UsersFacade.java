@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,4 +40,23 @@ public class UsersFacade extends AbstractFacade<Users> {
     }
 }
     
+    public List<Long> findUserIdsByRole(String role) {
+    return em.createQuery(
+        "SELECT u.id FROM Users u WHERE u.role = :role",
+        Long.class
+    )
+    .setParameter("role", role)
+    .getResultList();
+}
+
+    public void setLeaderID(Long leaderID, Long lecturerID) {
+    Users leaderUser = em.find(Users.class, leaderID);
+    
+    em.createQuery(
+        "UPDATE Users u SET u.leader = :leader WHERE u.id = :lecturerID"
+    )
+    .setParameter("leader", leaderUser)
+    .setParameter("lecturerID", lecturerID)
+    .executeUpdate();
+}
 }
