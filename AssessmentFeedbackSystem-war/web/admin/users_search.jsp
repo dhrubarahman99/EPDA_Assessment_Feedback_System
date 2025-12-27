@@ -29,7 +29,7 @@
             <button type="submit">Home</button>
         </form>
         
-        <form action="logout" method="post">
+        <form action="${pageContext.request.contextPath}/logout" method="post">
             <button type="submit">Logout</button>
         </form>
     </div>
