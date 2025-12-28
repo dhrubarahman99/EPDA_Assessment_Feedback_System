@@ -24,6 +24,22 @@ public class EnrollmentFacade extends AbstractFacade<Enrollment> {
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    public Long countStudentsByModule(Long moduleId) {
+        try {
+            return em.createQuery(
+                    "SELECT COUNT(DISTINCT e.student.id) " +
+                    "FROM Enrollment e " +
+                    "WHERE e.classGroup.module.id = :mid",
+                    Long.class
+            )
+            .setParameter("mid", moduleId)
+            .getSingleResult();
+        } catch (Exception e) {
+            return 0L;
+        }
+    }
+
 
     public EnrollmentFacade() {
         super(Enrollment.class);

@@ -78,6 +78,19 @@ and open the template in the editor.
     border-color: #6c63ff;
 }
 
+.error-msg{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #e53935;
+    font-weight: 600;
+}
+
+.success-msg{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #43a047;
+    font-weight: 600;
+}
 /* Buttons */
 .btn-row {
     display: flex;

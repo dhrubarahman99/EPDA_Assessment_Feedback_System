@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,13 +31,21 @@ public class UsersFacade extends AbstractFacade<Users> {
     }
     
     public Users findByEmail(String email) {
-    try {
-        return em.createQuery("SELECT u FROM Users u WHERE u.email = :email", Users.class)
-            .setParameter("email", email)
-            .getSingleResult();
-    } catch (Exception e) {
-        return null;
+        try {
+            return em.createQuery("SELECT u FROM Users u WHERE u.email = :email", Users.class)
+                .setParameter("email", email)
+                .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
-}
+    
+    public List<Users> findLecturers() {
+        return em.createQuery(
+                "SELECT u FROM Users u WHERE u.role = 'LECTURER'",
+                Users.class
+        ).getResultList();
+    }
+
     
 }
