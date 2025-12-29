@@ -1,7 +1,6 @@
-nbproject/private/
-build/
-dist/
+**/nbproject/private/
+**/build/
+**/dist/
 
 .DS_Store
 Thumbs.db
-/AssessmentFeedbackSystem-war/nbproject/private/

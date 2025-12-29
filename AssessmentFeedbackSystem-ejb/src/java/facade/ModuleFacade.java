@@ -46,4 +46,30 @@ public class ModuleFacade extends AbstractFacade<Module> {
     }
 }
     
+    public List<Module> findByModuleName(String name) {
+        return em.createQuery(
+                "SELECT m FROM Module m " +
+                "WHERE LOWER(m.moduleName) LIKE :name " +
+                "ORDER BY m.moduleName ASC",
+                Module.class)
+            .setParameter("name", "%" + name.toLowerCase() + "%")
+            .getResultList();
+    }
+    
+    public Module findByModuleCode(String moduleCode) {
+        try {
+            return em.createQuery(
+                    "SELECT m FROM Module m WHERE m.moduleCode = :code",
+                    Module.class
+            )
+            .setParameter("code", moduleCode)
+            .getSingleResult();
+        } catch (Exception e) {
+            return null; 
+        }
+    }
+
+    
+
+    
 }

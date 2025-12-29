@@ -1,0 +1,54 @@
+package controller;
+
+import entity.Module;
+import facade.EnrollmentFacade;
+import facade.ModuleFacade;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet(name = "LeaderReports", urlPatterns = {"/LeaderReports"})
+public class LeaderReports extends HttpServlet {
+
+    @EJB
+    private ModuleFacade moduleFacade;
+
+    @EJB
+    private EnrollmentFacade enrollmentFacade;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // 1) Check session
+        HttpSession s = request.getSession(false);
+        if (s == null || s.getAttribute("currentUser") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        // 2) Get modules
+        List<Module> modules = moduleFacade.findAll();
+
+        // 3) Build student count list (same order)
+        List<Long> studentCounts = new ArrayList<>();
+
+        for (Module m : modules) {
+            Long count = enrollmentFacade.countStudentsByModule(m.getId());
+            studentCounts.add(count);
+        }
+
+        // 4) Send to JSP
+        request.setAttribute("modules", modules);
+        request.setAttribute("studentCounts", studentCounts);
+
+        request.getRequestDispatcher("/leader/reports.jsp").forward(request, response);
+    }
+}

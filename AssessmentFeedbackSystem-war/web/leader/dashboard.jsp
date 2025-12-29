@@ -34,13 +34,12 @@
         </a>
 
         <a href="modules.jsp" class="card">
-            <!-- Use an existing icon to avoid broken image -->
             <img src="../images/classes.png" class="card-img">
             <h2>Modules</h2>
             <p>Create, update, and assign lecturers</p>
         </a>
 
-        <a href="reports.jsp" class="card">
+        <a href="<%= request.getContextPath() %>/LeaderReports" class="card">
             <img src="../images/reports.png" class="card-img">
             <h2>Reports</h2>
             <p>View reports and summary</p>
