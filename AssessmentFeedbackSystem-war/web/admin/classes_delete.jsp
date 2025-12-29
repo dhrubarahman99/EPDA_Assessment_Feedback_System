@@ -26,7 +26,7 @@
             <button type="submit"> Home</button>
         </form>
         
-        <form action="logout" method="post">
+        <form action="${pageContext.request.contextPath}/logout" method="post">
             <button type="submit" >Logout</button>
         </form>
     </div>
@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Delete Class</h1>
 
-        <form action="DeleteClasses" method="post">
+        <form action="${pageContext.request.contextPath}/admin_DeleteClasses" method="get">
             <div class="input-group">
-                <label>User ID</label>
+                <label>Class ID</label>
                 <select name="classId" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Class ID--</option>
                     <% 
-                        List<String> classIds = (List<String>) request.getAttribute("classIds");
+                        List<Long> classIds = (List<Long>) request.getAttribute("classgroupIds");
                         if (classIds != null) {
-                            for (String classId : classIds) {
+                            for (Long classId : classIds) {
                     %>
                                 <option value="<%= classId %>"><%= classId %></option>
                     <% 
@@ -52,7 +52,14 @@
                     %>
                 </select>
             </div>
-            
+             <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Delete</button>
         </form>

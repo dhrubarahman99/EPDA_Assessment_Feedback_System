@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create User</title>
+    <title>Create Classes</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
 </head>
 <body>
@@ -26,7 +26,7 @@
             <button type="submit"> Home</button>
         </form>
         
-        <form action="logout" method="post">
+        <form action="${pageContext.request.contextPath}/logout" method="post">
             <button type="submit" >Logout</button>
         </form>
     </div>
@@ -35,7 +35,7 @@
     <div class="create-box">
         <h1>Create Class</h1>
 
-        <form action="CreateClasses" method="post">
+        <form action="${pageContext.request.contextPath}/admin_CreateClasses" method="get">
             <div class="input-group">
                 <label>Class Name</label>
                 <input type="text" name="name" required>
@@ -47,9 +47,9 @@
                 <select name="Module" required>
                             <% 
                               
-                    List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
+                    List<Long> moduleIds = (List<Long>) request.getAttribute("moduleIds");
                     if (moduleIds != null) {
-                        for (String moduleId : moduleIds) {
+                        for (Long moduleId : moduleIds) {
                 %>
                             <option value="<%= moduleId %>"><%= moduleId %></option>
                 <% 
@@ -58,7 +58,14 @@
                 %>
                 </select>
             </div>
-
+             <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
             <button type="submit" class="create-btn">Create</button>
         </form>
     </div>
