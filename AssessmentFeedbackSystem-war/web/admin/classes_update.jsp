@@ -33,7 +33,7 @@
 
     <!-- CREATE USER FORM -->
     <div class="create-box">
-        <h1>Update User</h1>
+        <h1>Update Classes</h1>
 
         <form action="${pageContext.request.contextPath}/admin_UpdateClasses" method="get">
             <div class="input-group">

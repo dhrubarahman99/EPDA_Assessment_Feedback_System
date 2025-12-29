@@ -25,12 +25,16 @@ public class admin_UpdateClasses extends HttpServlet {
        Long moduleId = Long.parseLong(request.getParameter("moduleId"));
      
        name = name.trim();
+       if(name == null){
+           request.setAttribute("success","Please Enter all fields");
+           request.getRequestDispatcher("/admin_get_class_user_module_list?function=classes_update").include(request,response);
+       }
+       else{
+           classgroupFacade.updateClassgroup(classId, name, moduleId);
+           request.setAttribute("success","Update Successful");
+           request.getRequestDispatcher("/admin_get_class_user_module_list?function=classes_update").include(request,response);
+       }
        
-       
-       
-       classgroupFacade.updateClassgroup(classId, name, moduleId);
-       request.setAttribute("success","Update Successful");
-       request.getRequestDispatcher("/admin_get_class_user_module_list?function=classes_update").include(request,response);
        
     }
     }

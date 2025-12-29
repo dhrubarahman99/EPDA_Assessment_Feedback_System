@@ -30,11 +30,17 @@ public class admin_UpdateUser extends HttpServlet {
        email = email.trim();
        name = name.trim();
        
+       if(name == null || email == null || password == null || role ==null){
+           request.setAttribute("success","Please Enter all fields");
+           request.getRequestDispatcher("/admin_get_class_user_module_list?function=users_update").include(request,response);
+       }
+       else{
+           userFacade.updateUser(userId, email, name, password, role);
+           request.setAttribute("success","Update Successful");
+           request.getRequestDispatcher("/admin_get_class_user_module_list?function=users_update").include(request,response);
+       }
        
        
-       userFacade.updateUser(userId, email, name, password, role);
-       request.setAttribute("success","Update Successful");
-       request.getRequestDispatcher("/admin_get_class_user_module_list?function=users_update").include(request,response);
        
     }
     }

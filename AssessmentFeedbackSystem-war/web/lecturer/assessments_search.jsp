@@ -37,15 +37,15 @@
     <!-- SEARCH USER FORM -->
     <div class="create-box">
         <h1>Search Assessment</h1>
-        <form action="SearchAsssessment" method="get">
+        <form action="lecturer_SearchAsssessment" method="get">
             <div class="input-group">
                 <label>Assessment ID</label>
                 <select name="assessmentIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Assessment ID--</option>
                     <% 
-                        List<String> assessmentIds = (List<String>) request.getAttribute("assessmentIds");
+                        List<Long> assessmentIds = (List<Long>) request.getAttribute("assessmentIds");
                         if (assessmentIds != null) {
-                            for (String assessmentId : assessmentIds) {
+                            for (Long assessmentId : assessmentIds) {
                     %>
                                 <option value="<%= assessmentId %>"><%= assessmentId %></option>
                     <% 
@@ -72,10 +72,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>100000</td>
-                        <td>CS</td>
-                        <td>80</td>
-                        <td>100000000</td>
+                       <td>${id}</td>
+                        <td>${title}</td>
+                        <td>${weightage}</td>
+                        <td>${moduleId}</td>
                     </tr>
                    
                 </tbody>

@@ -15,20 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import facade.ModuleFacade;
 import entity.Module;
-import facade.ClassGroupFacade;
-import entity.ClassGroup;
-
+import entity.Assessment;
+import facade.AssessmentFacade;
 /**
  *
  * @author Dhruba
  */
-@WebServlet(name = "admin_CreateClasses", urlPatterns = {"/admin_CreateClasses"})
-public class admin_CreateClasses extends HttpServlet {
+@WebServlet(name = "lecturer_CreateAssessment", urlPatterns = {"/lecturer_CreateAssessment"})
+public class lecturer_CreateAssessment extends HttpServlet {
     
     @EJB
     private ModuleFacade moduleFacade;
     @EJB
-    private ClassGroupFacade classgroupFacade;
+    private AssessmentFacade assessmentFacade;
     
     
 
@@ -45,22 +44,23 @@ public class admin_CreateClasses extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String name = request.getParameter("name");
-        Long module = Long.parseLong(request.getParameter("Module"));
+        String title = request.getParameter("title");
+        int weightage = Integer.parseInt(request.getParameter("weightage"));
+        Long module = Long.parseLong(request.getParameter("moduleIds"));
         Module module1 = moduleFacade.findByID(module);
-        name = name.trim();
+        title = title.trim();
         
-        if(name == null){
+        if(title == null){
             request.setAttribute("success","Please fill in all fields");
-            request.getRequestDispatcher("/admin_get_class_user_module_list?function=classes_create").include(request,response);
-        }
-        else{
-            ClassGroup class1 = new ClassGroup(name, module1);
+            request.getRequestDispatcher("/lecturer_get_assessment_module_enrollment_marks_list?function=assessments_create").include(request,response);
+        }else{
+            Assessment assessment = new Assessment(title, weightage, module1);
         
-            classgroupFacade.create(class1);
+            assessmentFacade.create(assessment);
             request.setAttribute("success","Creation Successful");
-            request.getRequestDispatcher("/admin_get_class_user_module_list?function=classes_create").include(request,response);
+            request.getRequestDispatcher("/lecturer_get_assessment_module_enrollment_marks_list?function=assessments_create").include(request,response);
         }
+        
         
     }
 }

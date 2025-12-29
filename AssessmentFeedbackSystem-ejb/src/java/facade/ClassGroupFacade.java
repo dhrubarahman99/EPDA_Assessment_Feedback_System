@@ -54,4 +54,13 @@ public class ClassGroupFacade extends AbstractFacade<ClassGroup> {
     .setParameter("module", module)
     .executeUpdate();
 }
+   public ClassGroup findByID(Long id) {
+    try {
+        return em.createQuery("SELECT u FROM ClassGroup u WHERE u.id = :id", ClassGroup.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    } catch (Exception e) {
+        return null;
+    }
+}
 }

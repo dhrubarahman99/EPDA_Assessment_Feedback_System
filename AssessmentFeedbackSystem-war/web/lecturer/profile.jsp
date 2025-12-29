@@ -5,30 +5,47 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="entity.Users"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Leader Profile</title>
-
-    <!-- Existing dashboard styling -->
-    <link rel="stylesheet" href="../css/dashboard.css">
-
-    <!-- Reusable panels & forms styling -->
-    <link rel="stylesheet" href="../css/form-panels.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/form-panels.css">
 </head>
 <body>
 
+<%
+    // Get user passed from servlet
+    Users u = (Users) request.getAttribute("profileUser");
+
+    // redirect to servlet if no session
+    if (u == null) {
+        response.sendRedirect(request.getContextPath() + "/lecturer_Profile");
+        return;
+    }
+
+    String error = (String) request.getAttribute("error");
+    String success = (String) request.getAttribute("success");
+%>
+
 <div class="dashboard-container">
 
-    <!-- TOP BAR -->
     <div class="top-bar">
-        <a href="dashboard.jsp" class="btn btn-secondary back-btn">Back</a>
+        <a href="${pageContext.request.contextPath}/lecturer/dashboard.jsp" class="btn btn-secondary back-btn">Back</a>
         <h1>PROFILE</h1>
-        <form action="${pageContext.request.contextPath}/logout" method="post">
+        <form action="<%= request.getContextPath() %>/logout" method="post">
             <button class="logout-btn" type="submit">Logout</button>
         </form>
     </div>
 
+    <% if (error != null) { %>
+        <p class="error-msg"><%= error %></p>
+    <% } %>
+
+    <% if (success != null) { %>
+        <p class="success-msg"><%= success %></p>
+    <% } %>
 
     <div class="panel-grid">
 
@@ -38,57 +55,57 @@
 
             <div class="info-row">
                 <span class="info-label">Name</span>
-                <div class="info-value">John Leader</div>
+                <div class="info-value"><%= u.getName() %></div>
             </div>
 
             <div class="info-row">
                 <span class="info-label">Email</span>
-                <div class="info-value">john.leader@university.edu</div>
+                <div class="info-value"><%= u.getEmail() %></div>
             </div>
 
             <div class="info-row">
                 <span class="info-label">Role</span>
-                <div class="info-value">LEADER</div>
+                <div class="info-value"><%= u.getRole() %></div>
             </div>
 
             <div class="info-row">
                 <span class="info-label">User ID</span>
-                <div class="info-value">1001</div>
+                <div class="info-value"><%= u.getId() %></div>
             </div>
-
         </div>
 
         <!-- EDIT PROFILE PANEL -->
         <div class="panel">
             <h2 class="panel-title">Edit Profile</h2>
 
-            <form>
+            <form action="<%= request.getContextPath() %>/lecturer_Profile" method="post">
+
                 <div class="form-row">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-input" placeholder="Enter full name">
+                    <input type="text" name="name" class="form-input"
+                           value="<%= u.getName() %>"
+                           placeholder="Enter full name" required>
                 </div>
 
                 <div class="form-row">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" placeholder="Enter email address">
+                    <input type="email" name="email" class="form-input"
+                           value="<%= u.getEmail() %>"
+                           placeholder="Enter email address" required>
                 </div>
 
                 <div class="form-row">
                     <label class="form-label">New Password</label>
-                    <input type="password" class="form-input"
+                    <input type="password" name="newPassword" class="form-input"
                            placeholder="Leave blank to keep current password">
                 </div>
 
                 <div class="btn-row">
-                    <button type="button" class="btn btn-primary">
-                        Save Changes
-                    </button>
-                    <button type="button" class="btn btn-secondary">
-                        Cancel
-                    </button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="<%= request.getContextPath() %>/lecturer_Profile" class="btn btn-secondary">Cancel</a>
                 </div>
-            </form>
 
+            </form>
         </div>
 
     </div>
@@ -96,4 +113,6 @@
 
 </body>
 </html>
+
+
 

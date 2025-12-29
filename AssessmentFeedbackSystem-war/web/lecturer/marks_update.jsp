@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Update Marks</h1>
 
-        <form action="UpdateMarks" method="post">
+        <form action="lecturer_UpdateMarks" method="get">
             <div class="input-group">
                 <label>Marks ID</label>
                 <select name="marksIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Marks ID--</option>
                     <% 
-                        List<String> marksIds = (List<String>) request.getAttribute("marksIds");
+                        List<Long> marksIds = (List<Long>) request.getAttribute("marksIds");
                         if (marksIds != null) {
-                            for (String marksId : marksIds) {
+                            for (Long marksId : marksIds) {
                     %>
                                 <option value="<%= marksId %>"><%= marksId %></option>
                     <% 
@@ -68,9 +68,9 @@
                 <select name="enrollementIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Module ID--</option>
                     <% 
-                        List<String> enrollmentIds = (List<String>) request.getAttribute("enrollmentIds");
+                        List<Long> enrollmentIds = (List<Long>) request.getAttribute("enrollmentIds");
                         if (enrollmentIds != null) {
-                            for (String enrollmentId : enrollmentIds) {
+                            for (Long enrollmentId : enrollmentIds) {
                     %>
                                 <option value="<%= enrollmentId %>"><%= enrollmentId %></option>
                     <% 
@@ -85,9 +85,9 @@
                 <select name="assessmentIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Assessment ID--</option>
                     <% 
-                        List<String> assessmentIds = (List<String>) request.getAttribute("assessmentIds");
+                        List<Long> assessmentIds = (List<Long>) request.getAttribute("assessmentIds");
                         if (assessmentIds != null) {
-                            for (String assessmentId : assessmentIds) {
+                            for (Long assessmentId : assessmentIds) {
                     %>
                                 <option value="<%= assessmentId %>"><%= assessmentId %></option>
                     <% 
@@ -96,7 +96,14 @@
                     %>
                 </select>
             </div>
-
+        <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
             <button type="submit" class="create-btn">Edit</button>
         </form>
     </div>

@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Update GradeScheme</h1>
 
-        <form action="UpdateGradeScheme" method="post">
+        <form action="${pageContext.request.contextPath}/admin_UpdateGradeScheme" method="get">
             <div class="input-group">
                 <label>Select GradeScheme ID</label>
                 <select name="gradeschemeId" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select GradeScheme ID--</option>
                     <% 
-                        List<String> gradeschemeIds = (List<String>) request.getAttribute("gradeschemeIds");
+                        List<Long> gradeschemeIds = (List<Long>) request.getAttribute("gradeschemeIds");
                         if (gradeschemeIds != null) {
-                            for (String gradeschemeId : gradeschemeIds) {
+                            for (Long gradeschemeId : gradeschemeIds) {
                     %>
                                 <option value="<%= gradeschemeId %>"><%= gradeschemeId %></option>
                     <% 
@@ -77,6 +77,15 @@
                 <label>D MIN</label>
                 <input type="number" name="dMin" required>
             </div>
+            
+            <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Edit</button>
         </form>
