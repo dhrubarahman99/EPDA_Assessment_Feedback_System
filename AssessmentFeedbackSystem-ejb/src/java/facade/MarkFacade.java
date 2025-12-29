@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Mark;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,17 @@ public class MarkFacade extends AbstractFacade<Mark> {
         super(Mark.class);
     }
     
+    
+    public List<Mark> findByStudentId(Long sid) {
+        return em.createQuery(
+            "SELECT m FROM Mark m " +
+            "WHERE m.enrollment.student.id = :sid " +
+            "ORDER BY m.assessment.module.moduleName ASC, m.assessment.title ASC",
+            Mark.class
+        )
+        .setParameter("sid", sid)
+        .getResultList();
+    }
+
+
 }

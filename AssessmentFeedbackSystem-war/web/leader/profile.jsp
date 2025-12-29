@@ -19,7 +19,7 @@
     // Get user passed from servlet
     Users u = (Users) request.getAttribute("profileUser");
 
-    // If someone opened JSP directly, redirect to servlet
+    // redirect to servlet if no session
     if (u == null) {
         response.sendRedirect(request.getContextPath() + "/LeaderProfile");
         return;
