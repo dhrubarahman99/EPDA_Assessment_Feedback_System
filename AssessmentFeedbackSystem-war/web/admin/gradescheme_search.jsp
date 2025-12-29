@@ -40,15 +40,15 @@
     <!-- SEARCH USER FORM -->
     <div class="create-box">
         <h1>Search GradeScheme</h1>
-        <form action="SearchGradeScheme" method="get">
+        <form action="${pageContext.request.contextPath}/admin_SearchGradeScheme" method="get">
             <div class="input-group">
                 <label>Select GradeScheme ID</label>
                 <select name="gradeschemeId" id="userSelect" required>
                     <option value="">--Select GradeScheme ID--</option>
                     <% 
-                        List<String> gradeschemeIds = (List<String>) request.getAttribute("gradeschemeIds");
+                        List<Long> gradeschemeIds = (List<Long>) request.getAttribute("gradeschemeIds");
                         if (gradeschemeIds != null) {
-                            for (String gradeschemeId : gradeschemeIds) {
+                            for (Long gradeschemeId : gradeschemeIds) {
                     %>
                                 <option value="<%= gradeschemeId %>"><%= gradeschemeId %></option>
                     <% 
@@ -79,12 +79,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>100000</td>
-                        <td>no1</td>
-                        <td>80</td>
-                        <td>70</td>
-                        <td>60</td>
-                        <td>50</td>
+                        <td>${id}</td>
+                        <td>${name}</td>
+                        <td>${aMin}</td>
+                        <td>${bMin}</td>
+                        <td>${cMin}</td>
+                        <td>${dMin}</td>
                     </tr>
                    
                 </tbody>

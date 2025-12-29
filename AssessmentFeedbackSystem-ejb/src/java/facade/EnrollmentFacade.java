@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Enrollment;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -44,5 +45,29 @@ public class EnrollmentFacade extends AbstractFacade<Enrollment> {
     public EnrollmentFacade() {
         super(Enrollment.class);
     }
-    
+    public List<Long> getIDs() {
+    return em.createQuery(
+        "SELECT u.id FROM Enrollment u",
+        Long.class
+    ).getResultList();
+}
+    public Enrollment findByID(Long id) {
+    try {
+        return em.createQuery("SELECT u FROM Enrollment u WHERE u.id = :id", Enrollment.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    } catch (Exception e) {
+        return null;
+    }
+}
+    public Long countStudentsByModule1(Long moduleId) {
+    return em.createQuery(
+        "SELECT COUNT(e) " +
+        "FROM Enrollment e " +
+        "WHERE e.classGroup.module.id = :moduleId",
+        Long.class
+    )
+    .setParameter("moduleId", moduleId)
+    .getSingleResult();
+}
 }

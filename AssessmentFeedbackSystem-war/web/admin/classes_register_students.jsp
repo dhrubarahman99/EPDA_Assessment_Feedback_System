@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Register Students</h1>
 
-        <form action="RegisterStudent" method="post">
+        <form action="${pageContext.request.contextPath}/admin_RegisterStudent" method="get">
             <div class="input-group">
                 <label>Class ID</label>
                 <select name="classId" id="classSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Class ID--</option>
                     <% 
-                        List<String> classIds = (List<String>) request.getAttribute("userIds");
+                        List<Long> classIds = (List<Long>) request.getAttribute("classgroupIds");
                         if (classIds != null) {
-                            for (String classId : classIds) {
+                            for (Long classId : classIds) {
                     %>
                                 <option value="<%= classId %>"><%= classId %></option>
                     <% 
@@ -58,9 +58,9 @@
                 <select name="userId" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Student ID--</option>
                     <% 
-                        List<String> userIds = (List<String>) request.getAttribute("userIds");
+                        List<Long> userIds = (List<Long>) request.getAttribute("studentIds");
                         if (userIds != null) {
-                            for (String userId : userIds) {
+                            for (Long userId : userIds) {
                     %>
                                 <option value="<%= userId %>"><%= userId %></option>
                     <% 
@@ -69,8 +69,14 @@
                     %>
                 </select>
             </div>
-            
-           
+            <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Assign</button>
         </form>

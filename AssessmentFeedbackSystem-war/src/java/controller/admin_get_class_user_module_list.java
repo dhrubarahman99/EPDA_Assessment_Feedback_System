@@ -28,6 +28,7 @@ public class admin_get_class_user_module_list extends HttpServlet {
     {
 
        List<Long> userIds = userFacade.getuserIDs();
+       List<Long> studentIds = userFacade.getstudentIDs();
        List<Long> classgroupIds = classgroupFacade.getclassgroupIDs();
        List<Long> moduleIds = moduleFacade.getmoduleIDs();
        
@@ -38,6 +39,7 @@ public class admin_get_class_user_module_list extends HttpServlet {
         request.setAttribute("userIds", userIds);
         request.setAttribute("classgroupIds", classgroupIds);
         request.setAttribute("moduleIds", moduleIds);
+        request.setAttribute("studentIds", studentIds);
         request.getRequestDispatcher("/admin/"+function+".jsp").forward(request, response);
     }
     }

@@ -35,7 +35,7 @@
     <div class="create-box">
         <h1>Mark Students</h1>
 
-        <form action="CreateMarks" method="post">
+        <form action="lecturer_CreateMarks" method="get">
             <div class="input-group">
                 <label>Score</label>
                 <input type="number" name="score" max =100 min=0 required>
@@ -51,9 +51,9 @@
                 <select name="enrollementIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Enrollement ID--</option>
                     <% 
-                        List<String> enrollmentIds = (List<String>) request.getAttribute("enrollmentIds");
+                        List<Long> enrollmentIds = (List<Long>) request.getAttribute("enrollmentIds");
                         if (enrollmentIds != null) {
-                            for (String enrollmentId : enrollmentIds) {
+                            for (Long enrollmentId : enrollmentIds) {
                     %>
                                 <option value="<%= enrollmentId %>"><%= enrollmentId %></option>
                     <% 
@@ -68,9 +68,9 @@
                 <select name="assessmentIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Assessment ID--</option>
                     <% 
-                        List<String> assessmentIds = (List<String>) request.getAttribute("assessmentIds");
+                        List<Long> assessmentIds = (List<Long>) request.getAttribute("assessmentIds");
                         if (assessmentIds != null) {
-                            for (String assessmentId : assessmentIds) {
+                            for (Long assessmentId : assessmentIds) {
                     %>
                                 <option value="<%= assessmentId %>"><%= assessmentId %></option>
                     <% 
@@ -79,7 +79,14 @@
                     %>
                 </select>
             </div>
-
+        <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Create</button>
         </form>

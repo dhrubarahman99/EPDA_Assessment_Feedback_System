@@ -101,4 +101,10 @@ public class UsersFacade extends AbstractFacade<Users> {
     .setParameter("role", role)
     .executeUpdate();
 }
+    public List<Long> getstudentIDs() {
+    return em.createQuery(
+        "SELECT u.id FROM Users u WHERE u.role = 'STUDENT'",
+        Long.class
+    ).getResultList();
+}
 }

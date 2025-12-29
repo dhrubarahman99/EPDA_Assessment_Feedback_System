@@ -1,10 +1,13 @@
 package controller;
 
 
+import facade.AssessmentFacade;
+import facade.EnrollmentFacade;
+import facade.MarkFacade;
+import facade.ModuleFacade;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,36 +17,33 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/lecturer_get_assessment_module_enrollment_marks_list")
 public class lecturer_get_assessment_module_enrollment_marks_list extends HttpServlet {
     
+    @EJB
+    private AssessmentFacade assessmentFacade;
     
+    @EJB
+    private ModuleFacade moduleFacade;
+    
+    @EJB
+    private EnrollmentFacade enrollmentFacade;
+    
+    @EJB
+    private MarkFacade markFacade;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
-        List<String> assessmentIds = new ArrayList<>();
-        Random random = new Random();
-
-        for (int i = 0; i < 10; i++) {
-            assessmentIds.add(String.valueOf(random.nextInt(1000)));
-        }
+        List<Long> assessmentIds = assessmentFacade.getIDs();
         
         
-        List<String> moduleIds = new ArrayList<>();
+        List<Long> moduleIds = moduleFacade.getmoduleIDs();
 
-        for (int i = 0; i < 10; i++) {
-            moduleIds.add(String.valueOf(random.nextInt(1000)));
-        }
         
-        List<String>enrollmentIds = new ArrayList<>();
+        List<Long>enrollmentIds = enrollmentFacade.getIDs();
 
-        for (int i = 0; i < 10; i++) {
-            enrollmentIds.add(String.valueOf(random.nextInt(1000)));
-        }
         
-        List<String>marksIds = new ArrayList<>();
+        List<Long>marksIds = markFacade.getIDs();
 
-        for (int i = 0; i < 10; i++) {
-            marksIds.add(String.valueOf(random.nextInt(1000)));
-        }
+        
         
         
         String function = request.getParameter("function");

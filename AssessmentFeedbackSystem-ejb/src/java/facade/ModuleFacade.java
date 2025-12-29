@@ -69,7 +69,18 @@ public class ModuleFacade extends AbstractFacade<Module> {
         }
     }
 
-    
+    public List<Module> findModulesByLecturer(Long lecturerId) {
+    try {
+        return em.createQuery(
+            "SELECT m FROM Module m WHERE m.lecturer.id = :lecturerId",
+            Module.class
+        )
+        .setParameter("lecturerId", lecturerId)
+        .getResultList();
+    } catch (Exception e) {
+        return null;
+    }
+}
 
     
 }

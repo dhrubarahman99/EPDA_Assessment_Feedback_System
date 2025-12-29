@@ -35,7 +35,7 @@
     <div class="create-box">
         <h1>Create Assessment</h1>
 
-        <form action="CreateAssessment" method="post">
+        <form action="lecturer_CreateAssessment" method="get">
             <div class="input-group">
                 <label>Title</label>
                 <input type="text" name="title" required>
@@ -51,9 +51,9 @@
                 <select name="moduleIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Module ID--</option>
                     <% 
-                        List<String> moduleIds = (List<String>) request.getAttribute("moduleIds");
+                        List<Long> moduleIds = (List<Long>) request.getAttribute("moduleIds");
                         if (moduleIds != null) {
-                            for (String moduleId : moduleIds) {
+                            for (Long moduleId : moduleIds) {
                     %>
                                 <option value="<%= moduleId %>"><%= moduleId %></option>
                     <% 
@@ -62,7 +62,14 @@
                     %>
                 </select>
             </div>
-
+            <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Create</button>
         </form>

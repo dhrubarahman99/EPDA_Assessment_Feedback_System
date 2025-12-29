@@ -35,15 +35,15 @@
     <div class="create-box">
         <h1>Delete Assessment</h1>
 
-        <form action="DeleteAssessment" method="post">
+        <form action="lecturer_DeleteAssessment" method="get">
             <div class="input-group">
                 <label>Assessment ID</label>
                 <select name="assessmentIds" id="userSelect" required onchange="loadUserDetails(this.value)">
                     <option value="">--Select Assessment ID--</option>
                     <% 
-                        List<String> assessmentIds = (List<String>) request.getAttribute("assessmentIds");
+                        List<Long> assessmentIds = (List<Long>) request.getAttribute("assessmentIds");
                         if (assessmentIds != null) {
-                            for (String assessmentId : assessmentIds) {
+                            for (Long assessmentId : assessmentIds) {
                     %>
                                 <option value="<%= assessmentId %>"><%= assessmentId %></option>
                     <% 
@@ -52,7 +52,14 @@
                     %>
                 </select>
             </div>
-            
+            <%
+            String success = (String) request.getAttribute("success");
+            if (success != null) {
+        %>
+            <p class="success-msg"><%= success %></p>
+        <%
+            }
+        %>
 
             <button type="submit" class="create-btn">Delete</button>
         </form>
