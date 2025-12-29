@@ -48,4 +48,57 @@ public class UsersFacade extends AbstractFacade<Users> {
     }
 
     
+    public List<Long> findUserIdsByRole(String role) {
+    return em.createQuery(
+        "SELECT u.id FROM Users u WHERE u.role = :role",
+        Long.class
+    )
+    .setParameter("role", role)
+    .getResultList();
+}
+
+    public void setLeaderID(Long leaderID, Long lecturerID) {
+    Users leaderUser = em.find(Users.class, leaderID);
+    
+    em.createQuery(
+        "UPDATE Users u SET u.leader = :leader WHERE u.id = :lecturerID"
+    )
+    .setParameter("leader", leaderUser)
+    .setParameter("lecturerID", lecturerID)
+    .executeUpdate();
+}
+    
+    public List<Long> getuserIDs() {
+    return em.createQuery(
+        "SELECT u.id FROM Users u",
+        Long.class
+    ).getResultList();
+}
+    public void deleteUser(Long userId) {
+    em.createQuery(
+        "DELETE FROM Users u WHERE u.id = :userId"
+    ).setParameter("userId", userId).executeUpdate();
+}
+    public Users findByID(Long id) {
+    try {
+        return em.createQuery("SELECT u FROM Users u WHERE u.id = :id", Users.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    } catch (Exception e) {
+        return null;
+    }
+}
+    
+    public void updateUser( Long userId, String email, String name, String password, String role) {
+    
+    em.createQuery(
+        "UPDATE Users u SET u.email = :email , u.name = :name , u.password = :password , u.role = :role WHERE u.id = :userId"
+    )
+    .setParameter("userId", userId)
+    .setParameter("email", email)
+    .setParameter("name", name)
+    .setParameter("password", password)
+    .setParameter("role", role)
+    .executeUpdate();
+}
 }

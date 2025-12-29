@@ -31,6 +31,7 @@
 
         <h1>RESULTS</h1>
 
+        <!-- Logout servlet is Logout.java, so keep /Logout -->
         <form action="<%= request.getContextPath() %>/Logout" method="post">
             <button class="logout-btn" type="submit">Logout</button>
         </form>
@@ -54,7 +55,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                 <%
                     if (marks.isEmpty()) {
                 %>
@@ -87,7 +87,6 @@
                         }
                     }
                 %>
-
                 </tbody>
             </table>
         </div>
