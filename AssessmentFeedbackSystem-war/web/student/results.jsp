@@ -1,74 +1,97 @@
-<%-- 
-    Document   : users_search.jsp
-    Created on : Dec 24, 2025
-    Author     : liewj
---%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="entity.Mark"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Assessment</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/submenu.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/search_pages.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
+    <title>Student Results</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/form-panels.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/table-pages.css">
 </head>
 <body>
-<div class="container">
-    <!-- HEADER BUTTONS -->
-    <div class="header-buttons">
-        <form action="${pageContext.request.contextPath}/student/dashboard.jsp" method="get">
-            <button type="submit">Home</button>
-        </form>
-        
-        <form action="${pageContext.request.contextPath}/logout" method="post">
-            <button type="submit">Logout</button>
+
+<%
+    List<Mark> marks = (List<Mark>) request.getAttribute("marks");
+
+    if (marks == null) {
+        response.sendRedirect(request.getContextPath() + "/StudentResults");
+        return;
+    }
+
+    String error = (String) request.getAttribute("error");
+%>
+
+<div class="dashboard-container">
+
+    <div class="top-bar">
+        <a href="${pageContext.request.contextPath}/student/dashboard.jsp"
+           class="btn btn-secondary back-btn">Back</a>
+
+        <h1>RESULTS</h1>
+
+        <!-- Logout servlet is Logout.java, so keep /Logout -->
+        <form action="<%= request.getContextPath() %>/Logout" method="post">
+            <button class="logout-btn" type="submit">Logout</button>
         </form>
     </div>
-    
-    <!-- RESULTS SECTION WITH HARDCODED DATA -->
-    <div class="create-box results-section">
-        <h2>My Module Details</h2>
+
+    <% if (error != null) { %>
+        <p class="error-msg"><%= error %></p>
+    <% } %>
+
+    <div class="panel">
+        <h2 class="panel-title">Your Results</h2>
+
         <div class="table-wrap">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Assessment Name</th>
+                        <th>Module Code</th>
+                        <th>Module Name</th>
+                        <th>Assessment</th>
                         <th>Score</th>
-                        <th>Grade</th>
-                        <th>Feedback</th>
                     </tr>
                 </thead>
                 <tbody>
+                <%
+                    if (marks.isEmpty()) {
+                %>
                     <tr>
-                        <td>CS test</td>
-                        <td>80</td>
-                        <td>A</td>
-                        <td>Good</td>
+                        <td colspan="4">No results available yet.</td>
                     </tr>
-                    
+                <%
+                    } else {
+                        for (Mark m : marks) {
+                            String moduleCode = "-";
+                            String moduleName = "-";
+                            String assessmentTitle = "-";
+
+                            if (m.getAssessment() != null && m.getAssessment().getModule() != null) {
+                                moduleCode = m.getAssessment().getModule().getModuleCode();
+                                moduleName = m.getAssessment().getModule().getModuleName();
+                            }
+
+                            if (m.getAssessment() != null) {
+                                assessmentTitle = m.getAssessment().getTitle();
+                            }
+                %>
                     <tr>
-                        <td>AI test</td>
-                        <td>90</td>
-                         <td>A</td>
-                         <td>Good</td>
+                        <td><%= moduleCode %></td>
+                        <td><%= moduleName %></td>
+                        <td><%= assessmentTitle %></td>
+                        <td><%= m.getScore() %></td>
                     </tr>
-                    
-                    <tr>
-                        <td>EPDA test </td>
-                        <td>95</td>
-                        <td>A</td>
-                        <td>Good</td>
-                    </tr>
-                   
+                <%
+                        }
+                    }
+                %>
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>
 
 </body>

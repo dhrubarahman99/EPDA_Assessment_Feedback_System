@@ -27,17 +27,17 @@ public class LeaderReports extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Get modules
+        // get modules
         List<Module> modules = moduleFacade.findAll();
 
-        // 3) Build student count list (same order)
+        // build student count list
         List<Long> studentCounts = new ArrayList<>();
 
         for (Module m : modules) {
@@ -45,7 +45,7 @@ public class LeaderReports extends HttpServlet {
             studentCounts.add(count);
         }
 
-        // 4) Send to JSP
+        // send to JSP
         request.setAttribute("modules", modules);
         request.setAttribute("studentCounts", studentCounts);
 

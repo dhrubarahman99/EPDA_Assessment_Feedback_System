@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
 </head>
 <body>
 
@@ -19,7 +19,7 @@
     <div class="top-bar">
         <div></div>
         <h1>STUDENT DASHBOARD</h1>
-        <form action="../logout" method="post">
+        <form action="Logout" method="post">
             <button type="submit" class="logout-btn">Logout</button>
         </form>
     </div>
@@ -27,23 +27,18 @@
     <!-- DASHBOARD CARDS -->
     <div class="card-grid">
 
-        <a href="mymodules.jsp" class="card">
+        <a href="profile.jsp" class="card">
             <img src="../images/assessment.png" class="card-img">
-            <h2>My Modules</h2>
-            <p>See my modules</p>
+            <h2>Profile</h2>
+            <p>View and edit information</p>
         </a>
 
-        <a href="results.jsp" class="card">
+        <a href="${pageContext.request.contextPath}/StudentResults" class="card">
             <img src="../images/results.png" class="card-img">
             <h2>Results</h2>
             <p>See my results</p>
         </a>
-
-        <a href="profile.jsp" class="card">
-            <img src="../images/profile.png" class="card-img">
-            <h2>Profile</h2>
-            <p>Edit Profile </p>
-        </a>
+        
 
     </div>
 </div>
