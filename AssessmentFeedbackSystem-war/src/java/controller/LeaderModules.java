@@ -24,32 +24,32 @@ public class LeaderModules extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check login session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Read inputs
-        String q = request.getParameter("q");        // search text
-        String sort = request.getParameter("sort"); // asc / desc
+        // read inputs
+        String q = request.getParameter("q");        
+        String sort = request.getParameter("sort"); 
 
         if (sort == null || sort.isEmpty()) {
-            sort = "asc"; // default
+            sort = "asc"; 
         }
 
         try {
             List<Module> modules;
 
-            // 3) Search logic
+            // search 
             if (q == null || q.trim().isEmpty()) {
                 modules = moduleFacade.findAll();
             } else {
                 modules = moduleFacade.findByModuleName(q.trim());
             }
 
-            // 4) Sorting logic
+            // sort
             if (sort.equals("asc")) {
                 Collections.sort(modules, new Comparator<Module>() {
                     @Override
@@ -68,7 +68,7 @@ public class LeaderModules extends HttpServlet {
                 });
             }
 
-            // 5) Send to JSP
+            // send to JSP
             request.setAttribute("modules", modules);
             request.setAttribute("q", q);
             request.setAttribute("sort", sort);

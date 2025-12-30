@@ -1,0 +1,61 @@
+/* Landing page container */
+.landing-container {
+    width: 900px;
+    height: 500px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Logo circle */
+.logo-circle {
+    width: 160px;
+    height: 160px;
+    border: 4px solid #000;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* System title text */
+.system-title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #000;
+}
+
+/* Login button sizing */
+.login-btn {
+    width: 180px;
+}
+
+/* Logo container */
+.logo-circle {
+    width: 160px;
+    height: 160px;
+    border: 4px solid #000;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logo image */
+.logo-img {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+}

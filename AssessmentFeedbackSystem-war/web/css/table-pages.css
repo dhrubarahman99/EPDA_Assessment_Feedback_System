@@ -80,3 +80,15 @@ and open the template in the editor.
     color: #43a047;
     font-weight: 600;
 }
+
+.panel-header-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:14px;
+}
+
+.panel-header-row .panel-title{
+    margin:0;
+}

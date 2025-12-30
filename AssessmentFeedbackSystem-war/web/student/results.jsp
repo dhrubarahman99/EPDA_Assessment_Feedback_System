@@ -31,7 +31,7 @@
 
         <h1>RESULTS</h1>
 
-        <!-- Logout servlet is Logout.java, so keep /Logout -->
+        <!-- Logout -->
         <form action="<%= request.getContextPath() %>/Logout" method="post">
             <button class="logout-btn" type="submit">Logout</button>
         </form>

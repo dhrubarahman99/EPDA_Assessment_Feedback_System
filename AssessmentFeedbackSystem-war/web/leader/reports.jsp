@@ -49,7 +49,14 @@
 
     <!-- TABLE PANEL -->
     <div class="panel">
-        <h2 class="panel-title">Module Summary</h2>
+        <div class="panel-header-row">
+            <h2 class="panel-title">Module Summary</h2>
+
+            <a class="btn btn-primary"
+               href="<%= request.getContextPath() %>/LeaderReportsExportCSV">
+                Export CSV
+            </a>
+        </div>
 
         <div class="table-wrap">
             <table class="data-table">

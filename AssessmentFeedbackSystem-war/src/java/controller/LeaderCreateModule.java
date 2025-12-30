@@ -32,14 +32,14 @@ public class LeaderCreateModule extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check login session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Load dropdown data
+        // load data
         List<GradeScheme> schemes = gradeSchemeFacade.findAll();
         List<Users> lecturers = usersFacade.findLecturers();
 
@@ -53,26 +53,26 @@ public class LeaderCreateModule extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check login session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Read inputs
+        // read inputs
         String moduleCode = request.getParameter("moduleCode");
         String moduleName = request.getParameter("moduleName");
         String gradeSchemeIdStr = request.getParameter("gradeSchemeId");
         String lecturerIdStr = request.getParameter("lecturerId");
 
-        // 3) Reload dropdown data always (so JSP can show dropdowns again even on error)
+        // reload dropdown
         List<GradeScheme> schemes = gradeSchemeFacade.findAll();
         List<Users> lecturers = usersFacade.findLecturers();
         request.setAttribute("schemes", schemes);
         request.setAttribute("lecturers", lecturers);
 
-        // 4) Basic validation
+        // validation
         if (moduleCode == null || moduleName == null || gradeSchemeIdStr == null || lecturerIdStr == null
                 || moduleCode.trim().isEmpty() || moduleName.trim().isEmpty()
                 || gradeSchemeIdStr.trim().isEmpty() || lecturerIdStr.trim().isEmpty()) {
@@ -97,7 +97,7 @@ public class LeaderCreateModule extends HttpServlet {
             return;
         }
 
-        // 5) Check duplicate module code (recommended)
+        // check duplicate module
         try {
             Module existing = moduleFacade.findByModuleCode(moduleCode);
             if (existing != null) {
@@ -111,7 +111,7 @@ public class LeaderCreateModule extends HttpServlet {
             return;
         }
 
-        // 6) Find related objects
+        // find objects
         GradeScheme scheme = gradeSchemeFacade.find(gradeSchemeId);
         Users lecturer = usersFacade.find(lecturerId);
 
@@ -121,14 +121,14 @@ public class LeaderCreateModule extends HttpServlet {
             return;
         }
 
-        // 7) Create module
+        // create module
         try {
             Module m = new Module(moduleCode, moduleName, scheme, lecturer);
             moduleFacade.create(m);
 
             request.setAttribute("success", "Module created successfully.");
 
-            // Clear form values
+            // clear form values
             request.setAttribute("moduleCodeVal", "");
             request.setAttribute("moduleNameVal", "");
 
