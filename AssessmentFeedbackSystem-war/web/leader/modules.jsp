@@ -58,7 +58,7 @@
         }
     %>
 
-    <!-- TOOLBAR (Search + Sort) -->
+    <!-- TOOLBAR -->
     <div class="panel">
         <h2 class="panel-title">Module Management</h2>
 
@@ -89,17 +89,25 @@
 
             </div>
 
-            <div class="action-row">
-                <a href="<%= request.getContextPath() %>/LeaderCreateModule" class="btn btn-primary">Create Module</a>
-                <a href="<%= request.getContextPath() %>/LeaderModules" class="btn btn-secondary">Reset</a>
+            <div class="action-row action-row-spaced">
                 <button type="submit" class="btn btn-primary">Apply</button>
+                <a href="<%= request.getContextPath() %>/LeaderModules" class="btn btn-secondary">Reset</a>
             </div>
+
 
         </form>
     </div>
 
     <!-- TABLE -->
     <div class="panel">
+        <div class="panel-header-row">
+            <h2 class="panel-title" style="margin:0;">Modules List</h2>
+
+            <a href="<%= request.getContextPath() %>/LeaderCreateModule"
+               class="btn btn-primary">
+                Create Module
+            </a>
+        </div
         <h2 class="panel-title">Modules List</h2>
 
         <div class="table-wrap">

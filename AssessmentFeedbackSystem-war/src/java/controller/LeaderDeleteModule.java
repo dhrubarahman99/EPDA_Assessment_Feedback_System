@@ -25,14 +25,14 @@ public class LeaderDeleteModule extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check login session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Read module ID
+        // read module ID
         String idStr = request.getParameter("id");
 
         if (idStr == null || idStr.trim().isEmpty()) {
@@ -48,7 +48,7 @@ public class LeaderDeleteModule extends HttpServlet {
             return;
         }
 
-        // 3) Find module
+        // find module
         Module m = moduleFacade.find(id);
 
         if (m == null) {
@@ -56,14 +56,14 @@ public class LeaderDeleteModule extends HttpServlet {
             return;
         }
 
-        // 4) Delete module
+        // delete module
         try {
             moduleFacade.remove(m);
         } catch (Exception e) {
             // silently fail and redirect (simple + safe)
         }
 
-        // 5) Redirect back to modules list
+        // redirect
         response.sendRedirect(request.getContextPath() + "/LeaderModules");
     }
 

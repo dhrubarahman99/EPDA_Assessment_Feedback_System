@@ -41,14 +41,14 @@ public class LeaderEditModule extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check login session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Read module id
+        // read module id
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.trim().isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/LeaderModules");
@@ -63,18 +63,18 @@ public class LeaderEditModule extends HttpServlet {
             return;
         }
 
-        // 3) Find module
+        // find module
         Module m = moduleFacade.find(id);
         if (m == null) {
             response.sendRedirect(request.getContextPath() + "/LeaderModules");
             return;
         }
 
-        // 4) Load dropdown data
+        // load dropdown data
         List<GradeScheme> schemes = gradeSchemeFacade.findAll();
         List<Users> lecturers = usersFacade.findLecturers();
 
-        // 5) Send to JSP
+        // send JSP
         request.setAttribute("module", m);
         request.setAttribute("schemes", schemes);
         request.setAttribute("lecturers", lecturers);
@@ -85,26 +85,26 @@ public class LeaderEditModule extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Check login session
+        // check session
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("currentUser") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        // 2) Read inputs
+        // read inputs
         String idStr = request.getParameter("id");
         String moduleName = request.getParameter("moduleName");
         String gradeSchemeIdStr = request.getParameter("gradeSchemeId");
         String lecturerIdStr = request.getParameter("lecturerId");
 
-        // 3) Reload dropdown data always (important)
+        // reload dropdown
         List<GradeScheme> schemes = gradeSchemeFacade.findAll();
         List<Users> lecturers = usersFacade.findLecturers();
         request.setAttribute("schemes", schemes);
         request.setAttribute("lecturers", lecturers);
 
-        // 4) Basic validation
+        // validation
         if (idStr == null || moduleName == null || gradeSchemeIdStr == null || lecturerIdStr == null
                 || idStr.trim().isEmpty() || moduleName.trim().isEmpty()
                 || gradeSchemeIdStr.trim().isEmpty() || lecturerIdStr.trim().isEmpty()) {
@@ -128,7 +128,7 @@ public class LeaderEditModule extends HttpServlet {
             return;
         }
 
-        // 5) Find module
+        // find module
         Module m = moduleFacade.find(id);
         if (m == null) {
             request.setAttribute("error", "Module not found.");
@@ -136,7 +136,7 @@ public class LeaderEditModule extends HttpServlet {
             return;
         }
 
-        // 6) Find related objects
+        // find objects
         GradeScheme scheme = gradeSchemeFacade.find(gradeSchemeId);
         Users lecturer = usersFacade.find(lecturerId);
 
@@ -147,12 +147,12 @@ public class LeaderEditModule extends HttpServlet {
             return;
         }
 
-        // 7) Update module object
+        // update module object
         m.setModuleName(moduleName.trim());
         m.setGradeScheme(scheme);
         m.setLecturer(lecturer);
 
-        // 8) Save update
+        // save to db
         try {
             moduleFacade.edit(m);
 

@@ -29,7 +29,7 @@ public class StudentProfile extends HttpServlet {
 
         Users u = (Users) s.getAttribute("currentUser");
 
-        // Optional: role protection (recommended)
+        // check role
         if (u.getRole() == null || !u.getRole().equalsIgnoreCase("STUDENT")) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
@@ -51,7 +51,7 @@ public class StudentProfile extends HttpServlet {
 
         Users u = (Users) s.getAttribute("currentUser");
 
-        // Optional: role protection (recommended)
+        // check role
         if (u.getRole() == null || !u.getRole().equalsIgnoreCase("STUDENT")) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
